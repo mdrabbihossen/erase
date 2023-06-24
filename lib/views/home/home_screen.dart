@@ -20,6 +20,12 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: const Icon(Icons.sort_rounded),
         title: const Text("Erase: Remove Background"),
       ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {},
+          child: const Text("Remove Background"),
+        ),
+      ),
       bottomNavigationBar: BottomNav(
         onPress: loaded ? () {} : null,
       ),
