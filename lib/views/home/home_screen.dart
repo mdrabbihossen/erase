@@ -9,6 +9,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool loaded = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +20,9 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: const Icon(Icons.sort_rounded),
         title: const Text("Erase: Remove Background"),
       ),
-      bottomNavigationBar: const BottomNav(),
+      bottomNavigationBar: BottomNav(
+        onPress: loaded ? () {} : null,
+      ),
     );
   }
 }
