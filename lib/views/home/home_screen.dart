@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         imagePath = image.path;
         imagePicked = true;
+        loaded = true;
       });
     }
   }
@@ -45,7 +46,21 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text("Erase: Remove Background"),
       ),
       body: imagePicked
-          ? Image.file(File(imagePath))
+          ? Center(
+              child: Container(
+                height: size.height * 0.7,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: FileImage(
+                      File(imagePath),
+                    ),
+                    fit: BoxFit.fitWidth,
+                    filterQuality: FilterQuality.high,
+                  ),
+                ),
+              ),
+            )
           : Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -92,7 +107,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             "Upload Image",
                             style: GoogleFonts.poppins(
                               fontSize: 20,
-
                               fontWeight: FontWeight.w600,
                             ),
                           ),
