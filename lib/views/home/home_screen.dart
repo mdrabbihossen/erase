@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:erase/views/home/widgets/bottom_navbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -35,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -44,11 +46,60 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: imagePicked
           ? Image.file(File(imagePath))
-          : Center(
-              child: ElevatedButton(
-                onPressed: () {},
-                child: const Text("Remove Background"),
-              ),
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Upload an image to remove the background",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                    fontSize: 40,
+                    fontWeight: FontWeight.w700,
+                    color: const Color(0xff454545),
+                  ),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 70.0,
+                  ),
+                  child: ElevatedButton(
+                      onPressed: () => pickImage(),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xff0f70e6),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        minimumSize: Size(
+                          double.infinity,
+                          size.height * 0.09,
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.upload_sharp,
+                            size: 40,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "Upload Image",
+                            style: GoogleFonts.poppins(
+                              fontSize: 20,
+
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      )),
+                ),
+              ],
             ),
       bottomNavigationBar: BottomNav(
         onPress: loaded ? () {} : null,
