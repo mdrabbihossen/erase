@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class BottomNav extends StatelessWidget {
   final VoidCallback? onPress;
+  final Widget child;
 
   const BottomNav({
     Key? key,
     required this.onPress,
+    required this.child,
   }) : super(key: key);
 
   @override
@@ -14,16 +16,7 @@ class BottomNav extends StatelessWidget {
       height: 56,
       child: ElevatedButton(
         onPressed: onPress,
-        child: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.arrow_forward_ios_rounded),
-            SizedBox(
-              width: 10,
-            ),
-            Text("Remove Background"),
-          ],
-        ),
+        child: child,
       ),
     );
   }
